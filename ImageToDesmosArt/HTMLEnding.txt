@@ -1,0 +1,22 @@
+    ]);
+  </script>
+  <script>
+function runWhenAPILoaded(cb) {
+  if (!window.Desmos || !window.Desmos.Calculator) {
+    setTimeout(runWhenAPILoaded, 1, cb);
+    return;
+  }
+  cb();
+}
+runWhenAPILoaded (function () {
+  window.$ = Desmos.$;
+  window.TestBridge = {};
+
+  var script = document.getElementById('main-script');
+  if (script) {
+    eval.call(window, script.textContent);
+  }
+})
+</script>
+</body>
+</html>
